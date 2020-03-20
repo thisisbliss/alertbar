@@ -32,14 +32,30 @@ function alertbar() {
     return;
   }
 
-  $title = $config->get('alert_title');
-  $text = $config->get('alert_text');
-  $url = $config->get('alert_link');
-  $link_text = $config->get('alert_link_text');
-  $type = $config->get('alert_type');
-  $position = $config->get('alert_position');
-  $position_type = $config->get('alert_position_type');
-  $timestamp = $config->get('alert_timestamp');
+  if(!empty($config->get('alert_title'))) {
+    $title = $config->get('alert_title');
+  }
+  if (!empty($config->get('alert_text'))) {
+    $text = $config->get('alert_text');
+  }
+  if (!empty($config->get('alert_link'))) {
+    $url = $config->get('alert_link');
+  }
+  if (!empty($config->get('alert_link_text'))) {
+    $link_text = $config->get('alert_link_text');
+  }
+  if (!empty($config->get('alert_type'))) {
+    $type = $config->get('alert_type');
+  }
+  if (!empty($config->get('alert_position'))) {
+    $position = $config->get('alert_position');
+  }
+  if (!empty($config->get('alert_position_type'))) {
+    $position_type = $config->get('alert_position_type');
+  }
+  if (!empty($config->get('alert_timestamp'))) {
+    $timestamp = $config->get('alert_timestamp');
+  }
 
   $alertbar = [
     '#theme' => 'alertbar',
