@@ -1,0 +1,34 @@
+{%
+  set classes = [
+    'alert-bar',
+    'js-alert-bar',
+    'alert-bar--open',
+    type ? 'alert-bar--' ~ type|clean_class,
+    position ? 'alert-bar--' ~ position|clean_class,
+    position_type ? 'alert-bar--' ~ position_type|clean_class,
+  ]
+%}
+
+{% if url %}
+  <a href="{{ url }}" {{attributes.addClass(classes)}} data-timestamp="{{ timestamp }}">
+{% else %}
+  <div {{attributes.addClass(classes)}} data-timestamp="{{ timestamp }}">
+{% endif %}
+
+  {% if title %}
+    <div class="alert-bar__title">{{ title }}</div>
+  {% endif %}
+  {% if text %}
+    <div class="alert-bar__text">{{ text }}</div>
+  {% endif %}
+  {% if link_text %}
+    <div class="alert-bar__link">{{ link_text }}</div>
+  {% endif %}
+
+  <button class="alert-bar__close js-alert-bar-close">Close</button>
+
+{% if url %}
+  </a>
+{% else %}
+  </div>
+{% endif %}

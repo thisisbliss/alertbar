@@ -1,0 +1,6 @@
+alertbar.admin_settings_form:
+  title: 'Alert bar configuration'
+  route_name: alertbar.admin_settings_form
+  description: 'Alert bar admin'
+  parent: system.admin_config_system
+  weight: 99

@@ -1,0 +1,6 @@
+alertbar:
+  css:
+    component:
+      css/alertbar.css: {}
+  js:
+    scripts/alertbar.js: {}

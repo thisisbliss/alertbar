@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Contains alertbar.module
+ */
+
+/**
+ * Implements hook_theme() to add the template definition.
+ **/
+function alertbar_theme($existing, $type, $theme, $path) {
+  return array(
+    'alertbar' => array(
+      'variables' => array(
+        'title' => NULL,
+        'text' => NULL,
+        'url' => NULL,
+        'link_text' => NULL,
+        'type' => NULL,
+        'position' => NULL,
+        'position_type' => NULL,
+        'timestamp' => NULL,
+      ),
+    ),
+  );
+}
+
+function alertbar() {
+  $config = \Drupal::config('alertbar.adminsettings');
+
+  if ($config->get('alert_active') == 0) {
+    return;
+  }
+
+  $title = $config->get('alert_title');
+  $text = $config->get('alert_text');
+  $url = $config->get('alert_link');
+  $link_text = $config->get('alert_link_text');
+  $type = $config->get('alert_type');
+  $position = $config->get('alert_position');
+  $position_type = $config->get('alert_position_type');
+  $timestamp = $config->get('alert_timestamp');
+
+  $alertbar = [
+    '#theme' => 'alertbar',
+    '#attached' => ['library' => ['alertbar/alertbar']],
+    '#title' => $title,
+    '#text' => $text,
+    '#url' => $url,
+    '#link_text' => $link_text,
+    '#type' => $type,
+    '#position' => $position,
+    '#position_type' => $position_type,
+    '#timestamp' => $timestamp,
+  ];
+
+  $active_theme = \Drupal::config('system.theme');
+  if ($active_theme->get('default') == \Drupal::service('theme.manager')->getActiveTheme()->getName()) {
+    return $alertbar;
+  }
+}
+
+function alertbar_page_bottom(array &$page_bottom) {
+  $config = \Drupal::config('alertbar.adminsettings');
+  $position = $config->get('alert_position');
+
+  if($position == 'bottom') {
+    $page_bottom['notify_bar'] = alertbar();
+  }
+}
+
+function alertbar_page_top(array &$page_top) {
+  $config = \Drupal::config('alertbar.adminsettings');
+  $position = $config->get('alert_position');
+
+  if ($position == 'top' || $position == 'centre') {
+    $page_top['notify_bar'] = alertbar();
+  }
+}
