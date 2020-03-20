@@ -1,6 +1,6 @@
 alertbar.admin_settings_form:
-  title: 'Alert bar configuration'
+  title: 'Alert Bar Configuration'
   route_name: alertbar.admin_settings_form
-  description: 'Alert bar admin'
+  description: 'Configuration for Alert Bar by Bliss.'
   parent: system.admin_config_system
   weight: 99
