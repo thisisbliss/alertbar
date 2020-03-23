@@ -9,10 +9,16 @@
   ]
 %}
 
-{% if url %}
-  <a href="{{ url }}" {{attributes.addClass(classes)}} data-timestamp="{{ timestamp }}">
+{% if type = 'alert' %}
+  {% set alert_role = 'alert'  %}
 {% else %}
-  <div {{attributes.addClass(classes)}} data-timestamp="{{ timestamp }}">
+  {% set alert_role = 'polite' %}
+{% endif %}
+
+{% if url %}
+  <a href="{{ url }}" {{attributes.addClass(classes)}} data-timestamp="{{ timestamp }}" role="{{ alert_role }}">
+{% else %}
+  <div {{attributes.addClass(classes)}} data-timestamp="{{ timestamp }}" role="{{ alert_role }}>
 {% endif %}
 
   {% if title %}
@@ -25,7 +31,7 @@
     <div class="alert-bar__link">{{ link_text }}</div>
   {% endif %}
 
-  <button class="alert-bar__close js-alert-bar-close">Close</button>
+  <button class="alert-bar__close js-alert-bar-close" aria-label="Close">Close</button>
 
 {% if url %}
   </a>
