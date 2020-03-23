@@ -1,7 +1,7 @@
 .alert-bar {
   display: flex;
   align-items: center;
-  padding: 15px 20px 15px 70px;
+  padding: 15px 50px 15px 70px;
   color: #FFF;
   font-family: inherit;
   background-image: url("../images/info.svg");
@@ -12,6 +12,7 @@
   font-size: 16px;
   display: none;
   position: relative;
+  transition: ease-in-out background-color 200ms;
 }
 
 .alert-bar:hover,
@@ -45,18 +46,39 @@
   position: relative;
   text-indent: -9999px;
   border: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background-color: rgba(0,0,0,.1);
 }
 
 .alert-bar--status {
   background-color: #008000;
 }
 
+.alert-bar--status:hover,
+.alert-bar--status:focus {
+  background-color: #007300;
+}
+
 .alert-bar--warning {
   background-color: #ffa500;
 }
 
+.alert-bar--warning:hover,
+.alert-bar--warning:focus {
+  background-color: #F29800;
+}
+
 .alert-bar--alert {
   background-color: #ff0000;
+}
+
+.alert-bar--alert:hover,
+.alert-bar--alert:focus {
+  background-color: #F20000;
 }
 
 .alert-bar--fixed {
@@ -109,3 +131,33 @@
   right: 20px;
   margin-top: 0;
 }
+
+/* Styles for screens below 600px */
+@media screen and (max-width: 37.5em) {
+  .alert-bar__title {
+    flex-shrink: 1;
+  }
+
+  .alert-bar__text {
+    display: none;
+  }
+}
+
+/* Styles for screens below 480px */
+@media screen and (max-width: 30em) {
+  .alert-bar {
+    font-size: 14px;
+    background-size: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-position: left 10px center;
+  }
+}
+
+
+
+
+
+
+
+
